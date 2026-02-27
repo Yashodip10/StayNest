@@ -5,6 +5,8 @@ const Listing=require("./models/listing.js");
 const path=require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate")
+const wrapAsync=require("./utils/wrapAsync.js");
+
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
@@ -59,17 +61,13 @@ app.get("/listings/new",(req,res)=>{
 
 
 // create routes
-app.post("/listings", async (req, res,next) => {
-    try{
+app.post("/listings", wrapAsync(async (req, res,next) => {
+ 
     console.log(req.body)
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
-    }catch(err){
-        next(err)
-    }
-   
-});
+    });
 
 //Edite route
 app.get("/listings/:id/edit",async(req,res)=>{
