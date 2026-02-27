@@ -59,11 +59,16 @@ app.get("/listings/new",(req,res)=>{
 
 
 // create routes
-app.post("/listings", async (req, res) => {
+app.post("/listings", async (req, res,next) => {
+    try{
     console.log(req.body)
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
+    }catch(err){
+        next(err)
+    }
+   
 });
 
 //Edite route
@@ -96,6 +101,9 @@ app.get("/listings/:id",async(req,res)=>{
     res.render("listings/show.ejs",{listing})
 })
 
+app.use((req,res,err,next)=>{
+    res.send("something went wrong..")
+})
 
 app.listen(8080,()=>{
     console.log(" server is listening on port 8080:");
