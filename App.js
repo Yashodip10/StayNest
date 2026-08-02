@@ -91,7 +91,7 @@ main().then(()=>{
 
 
 app.get("/",(req,res)=>{
-    res.send("welcome to home page");
+    res.redirect("/listings");
 })
 
 // app.get("/testListing",async(req,res)=>{
