@@ -34,16 +34,6 @@ const listingSchema=new Schema({
     country:String,
 category: {
     type: String,
-    enum: [
-        "Homes",
-        "Pools",
-        "Mountains",
-        "Beach",
-        "Forest",
-        "City",
-        "Snow"
-    ],
-    default: "Tednding"
 },
     owner: {
     type: Schema.Types.ObjectId,
