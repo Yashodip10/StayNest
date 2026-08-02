@@ -1,0 +1,95 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5 booking-page">
+
+<h2 class="mb-4 fw-bold">
+
+My Bookings
+
+</h2>
+
+<% if(bookings.length==0){ %>
+
+<div class="alert alert-info">
+
+No bookings yet.
+
+</div>
+
+<% } %>
+
+<div class="row">
+
+<% bookings.forEach(booking=>{ %>
+
+<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+
+<a
+href="/listings/<%= booking.listing._id %>"
+class="text-decoration-none text-dark"
+>
+
+<div class="card shadow-sm listing-card h-100">
+
+<img
+src="<%= booking.listing.image.url %>"
+class="card-img-top"
+style="height:220px;object-fit:cover;"
+>
+
+<div class="card-body">
+
+<h5>
+
+<%= booking.listing.title %>
+
+</h5>
+
+<p>
+
+📍 <%= booking.listing.location %>
+
+</p>
+
+<h6 class="text-danger">
+
+₹<%= booking.listing.price %>
+
+</h6>
+
+<span class="badge bg-success">
+
+<%= booking.status %>
+
+
+</span>
+<form
+action="/bookings/<%= booking._id %>?_method=DELETE"
+method="POST"
+class="mt-3"
+onclick="event.stopPropagation();"
+>
+
+<button
+class="btn btn-outline-danger btn-sm w-100"
+>
+
+Cancel Booking
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+<% }) %>
+
+</div>
+
+</div>

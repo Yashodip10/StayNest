@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
 
-const MONGO_URL="mongodb://localhost:27017/wanderlust";
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 
 // async function main(){
 //     await mongoose.connect(MONGO_URL);
@@ -32,6 +32,19 @@ const listingSchema=new Schema({
     price:Number,
     location:String,
     country:String,
+category: {
+    type: String,
+    enum: [
+        "Homes",
+        "Pools",
+        "Mountains",
+        "Beach",
+        "Forest",
+        "City",
+        "Snow"
+    ],
+    default: "Tednding"
+},
     owner: {
     type: Schema.Types.ObjectId,
     ref: "User"

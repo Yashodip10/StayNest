@@ -12,7 +12,7 @@
 
     <div class="row g-5 mt-4 align-items-start">
 
-        <div class="col-lg-7">
+        <div class="col-lg-8 col-md-12">
 
             <img
                 src="<%= listing.image.url %>"
@@ -22,7 +22,9 @@
 
             <div class="mt-4">
 
-                <h4>Description</h4>
+                <h4 class="fw-bold mt-4">
+                 Description
+               </h4>
 
                 <p class="text-muted fs-5">
                     <%= listing.description %>
@@ -32,7 +34,7 @@
 
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-4 col-md-12">
 
            <div class="card shadow-lg border-0 rounded-4 p-4 booking-card">
 
@@ -47,18 +49,30 @@
                 </h3>
 
                 <hr>
+<form
+    action="/bookings/<%= listing._id %>"
+    method="POST"
+>
 
-                <button class="btn btn-danger w-100 rounded-pill mb-3">
+    <button
+        class="btn btn-danger w-100 rounded-pill mb-3"
+    >
+        Book Now
+    </button>
 
-                    Reserve
+</form>
 
-                </button>
+              <form action="/wishlist/<%= listing._id %>" method="POST">
 
-                <button class="btn btn-outline-dark w-100 rounded-pill">
+<button
+class="btn btn-outline-dark w-100 rounded-pill"
+>
 
-                    ❤️ Save
+❤️ Save
 
-                </button>
+</button>
+
+</form>
 
                 <hr>
 
@@ -81,8 +95,11 @@
     </div>
 
     <hr class="my-5">
+<h3 class="fw-bold mt-5 mb-4">
 
-<h3 class="mb-4">Reviews</h3>
+⭐ Guest Reviews
+
+</h3>
 
 <% if(currUser){ %>
 
@@ -140,7 +157,7 @@
 
 <div class="card review-card border-0">
 
-<div class="card-body">
+<div class="card shadow-sm rounded-4 border-0 h-100">
 
 <h5 class="fw-bold">
 

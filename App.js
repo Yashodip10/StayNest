@@ -5,6 +5,7 @@ const multer = require("multer");
 const { storage } = require("./cloudConfig");
 const upload = multer({ storage });
 const reviewRouter = require("./routes/review");
+const bookingRouter = require("./routes/booking");
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
@@ -22,6 +23,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const userRouter = require("./routes/user");
 const { isLoggedIn, isOwner } = require("./middleware");
+const wishlistRouter = require("./routes/wishlist");
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
@@ -31,7 +33,7 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 const sessionOptions = {
-    secret: "mysecretcode",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -69,12 +71,16 @@ const validateListing=(req,res,next)=>{
     }
 };
 app.use("/listings/:id/reviews", reviewRouter);
+app.use("/bookings", bookingRouter);
+app.use("/wishlist", wishlistRouter);
 
 
-const MONGO_URL = process.env.ATLASDB_URL;
+const dbUrl =
+    process.env.ATLASDB_URL ||
+    "mongodb://127.0.0.1:27017/wanderlust";
 
-async function main(){
-    await mongoose.connect(MONGO_URL);
+async function main() {
+    await mongoose.connect(dbUrl);
 }
 
 main().then(()=>{

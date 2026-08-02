@@ -1,0 +1,78 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5 booking-page">
+
+    <h2 class="fw-bold mb-4">
+        ❤️ My Wishlist
+    </h2>
+
+    <% if(wishlists.length === 0){ %>
+
+        <div class="alert alert-info">
+            Your wishlist is empty.
+        </div>
+
+    <% } %>
+
+    <div class="row">
+
+        <% wishlists.forEach(wishlist => { %>
+
+           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+
+              <div class="card listing-card shadow h-100 border-0 rounded-4">
+
+                    <a
+                        href="/listings/<%= wishlist.listing._id %>"
+                        class="text-decoration-none text-dark"
+                    >
+
+                        <img
+                            src="<%= wishlist.listing.image.url %>"
+                            class="card-img-top listing-img"
+                        >
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold">
+                                <%= wishlist.listing.title %>
+                            </h5>
+
+                            <p class="text-muted">
+                                📍 <%= wishlist.listing.location %>
+                            </p>
+
+                            <h5 class="text-danger">
+                                ₹<%= wishlist.listing.price.toLocaleString("en-IN") %>
+                            </h5>
+
+                        </div>
+
+                    </a>
+
+                    <div class="card-body">
+
+                        <form
+                            action="/wishlist/<%= wishlist._id %>?_method=DELETE"
+                            method="POST"
+                        >
+
+                            <button
+                                class="btn btn-outline-danger w-100"
+                            >
+                                Remove
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</div>

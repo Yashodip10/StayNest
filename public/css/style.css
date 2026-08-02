@@ -124,14 +124,14 @@ body {
 }
 
 .btn-danger {
-  background: #fe424d;
-  border: none;
+  transition: 0.3s;
 }
 
 .btn-danger:hover {
-  background: #e63946;
-}
+  transform: translateY(-2px);
 
+  box-shadow: 0 10px 20px rgba(254, 66, 77, 0.25);
+}
 /* Listing Cards */
 
 .listing-link {
@@ -148,14 +148,19 @@ body {
 }
 
 .listing-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  transform: translateY(-8px) scale(1.02);
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
 }
 
 .listing-img {
   width: 100%;
-  height: 280px;
+
+  height: 260px;
+
   object-fit: cover;
+
+  border-radius: 18px 18px 0 0;
 }
 
 .listing-card .card-body {
@@ -173,7 +178,8 @@ body {
 /* Search */
 
 .search-bar {
-  width: 380px;
+  max-width: 320px;
+  width: 100%;
 }
 
 .search-bar input {
@@ -262,4 +268,261 @@ body {
 .review-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  transition: 0.3s;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.04);
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  /* Navbar */
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .search-bar button {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* Home */
+
+  .listing-img {
+    height: 230px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  /* Show Page */
+
+  .listing-show-img {
+    height: 280px;
+  }
+
+  .booking-card {
+    position: static;
+    margin-top: 25px;
+  }
+
+  /* Forms */
+
+  form {
+    width: 100%;
+  }
+
+  /* Buttons */
+
+  .btn {
+    width: 100%;
+  }
+
+  /* Footer */
+
+  .f-info {
+    height: auto;
+    padding: 20px;
+  }
+
+  .f-info-socials {
+    margin-bottom: 10px;
+  }
+}
+
+.listing-card {
+  cursor: pointer;
+}
+
+.listing-card img {
+  transition: transform 0.35s ease;
+}
+
+.listing-card:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .listing-card {
+    margin-bottom: 20px;
+  }
+
+  .listing-img {
+    height: 240px;
+  }
+
+  .card-body h5 {
+    font-size: 1.1rem;
+  }
+}
+
+/* ================= SHOW PAGE ================= */
+
+.listing-show-img {
+  width: 100%;
+
+  height: 500px;
+
+  border-radius: 20px;
+
+  object-fit: cover;
+}
+
+.booking-card {
+  border-radius: 20px;
+
+  transition: 0.3s;
+}
+
+.booking-card:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 992px) {
+  .listing-show-img {
+    height: 320px;
+  }
+
+  .booking-card {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .listing-show-img {
+    height: 250px;
+  }
+
+  .booking-card {
+    padding: 25px;
+  }
+
+  .booking-card h3 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ================= FORMS ================= */
+
+.form-container {
+  max-width: 700px;
+
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%;
+
+    padding: 20px;
+  }
+
+  .form-control {
+    font-size: 16px;
+
+    padding: 12px;
+  }
+
+  textarea {
+    min-height: 130px;
+  }
+}
+
+/* ================= BOOKINGS ================= */
+
+.booking-page .card {
+  transition: 0.3s;
+}
+
+.booking-page .card:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+  .booking-page .card {
+    margin-bottom: 20px;
+  }
+
+  .booking-page img {
+    height: 220px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px;
+
+    font-size: 16px;
+  }
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-brand i {
+  font-size: 1.8rem;
+  color: #fe424d;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 600;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 8px 0;
+  }
+
+  .search-bar {
+    margin: 15px 0;
+  }
+
+  .search-bar button {
+    width: 50px;
+  }
+
+  .navbar .btn {
+    width: 100%;
+  }
 }
