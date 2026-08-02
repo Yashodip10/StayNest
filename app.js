@@ -87,11 +87,12 @@ console.log("DB URL:", dbUrl);
 
 main()
     .then(() => {
-        console.log("MongoDB Connected Successfully");
+        console.log("✅ MongoDB Connected");
     })
     .catch((err) => {
-        console.error("MongoDB Connection Error:");
+        console.error("❌ MongoDB Connection Error:");
         console.error(err);
+        process.exit(1);
     });
 
 
