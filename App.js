@@ -103,11 +103,34 @@ app.get("/",(req,res)=>{
 
 
 // index route
-app.get("/listings",wrapAsync(async (req,res) => {
-    const allListings=await Listing.find({});
- res.render("listings/index", { allListings });
+app.get("/listings", wrapAsync(async (req, res) => {
 
- }));
+    let search = req.query.search;
+
+    let allListings;
+
+    if (search) {
+
+        allListings = await Listing.find({
+            $or: [
+                { title: { $regex: search, $options: "i" } },
+                { location: { $regex: search, $options: "i" } },
+                { country: { $regex: search, $options: "i" } }
+            ]
+        });
+
+    } else {
+
+        allListings = await Listing.find({});
+
+    }
+
+    res.render("listings/index", {
+    allListings,
+    search
+});
+
+}));
 
 
  // new routes
@@ -149,9 +172,14 @@ app.get(
 
         let { id } = req.params;
 
-       const listing = await Listing.findById(id)
+const listing = await Listing.findById(id)
     .populate("owner")
-    .populate("reviews");
+    .populate({
+        path: "reviews",
+        populate: {
+            path: "author",
+        },
+    });
 
         res.render("listings/edit", { listing });
 
@@ -202,12 +230,16 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
     const listing = await Listing.findById(id)
         .populate("owner")
-        .populate("reviews");
+        .populate({
+            path: "reviews",
+            populate: {
+                path: "author",
+            },
+        });
 
     res.render("listings/show.ejs", { listing });
 
 }));
-
 
 // Catch-all 404 handler
 app.use((req, res, next) => {
