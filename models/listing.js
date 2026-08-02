@@ -3,15 +3,15 @@ const Schema=mongoose.Schema;
 
 const MONGO_URL="mongodb://localhost:27017/wanderlust";
 
-async function main(){
-    await mongoose.connect(MONGO_URL);
-}
+// async function main(){
+//     await mongoose.connect(MONGO_URL);
+// }
 
-main().then(()=>{
-    console.log("connection sucessfull..");
-}).catch((err)=>{
-    console.log(err)
-}); 
+// main().then(()=>{
+//     console.log("connection sucessfull..");
+// }).catch((err)=>{
+//     console.log(err)
+// }); 
 
 const listingSchema=new Schema({
     title:{
@@ -31,7 +31,18 @@ const listingSchema=new Schema({
     },
     price:Number,
     location:String,
-    country:String
+    country:String,
+    owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+},
+reviews: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+    },
+]
+
 });
 
 const Listing=mongoose.model("Listing",listingSchema);

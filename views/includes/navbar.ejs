@@ -5,7 +5,7 @@
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
+      data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -13,6 +13,25 @@
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/listings">All Listings</a>
         <a class="nav-link" href="/listings/new">Add New Listing</a>
+        <% if(!currUser){ %>
+
+<li class="nav-item">
+    <a class="nav-link" href="/signup">Signup</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/login">Login</a>
+</li>
+
+<% } %>
+
+<% if(currUser){ %>
+
+<li class="nav-item">
+    <a class="nav-link" href="/logout">Logout</a>
+</li>
+
+<% } %>
       </div>
     </div>
   </div>
