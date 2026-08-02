@@ -83,11 +83,16 @@ async function main() {
     await mongoose.connect(dbUrl);
 }
 
-main().then(()=>{
-    console.log("connection sucessfull..");
-}).catch((err)=>{
-    console.log(err)
-}); 
+console.log("DB URL:", dbUrl);
+
+main()
+    .then(() => {
+        console.log("MongoDB Connected Successfully");
+    })
+    .catch((err) => {
+        console.error("MongoDB Connection Error:");
+        console.error(err);
+    });
 
 
 app.get("/",(req,res)=>{
@@ -261,6 +266,8 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(8080,()=>{
-    console.log(" server is listening on port 8080:");
-})
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+});
